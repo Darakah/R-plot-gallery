@@ -7,6 +7,8 @@
 #' @return Labeled plot object
 #' @examples
 #' gseaplot2_labeled(all_GSEA$Contrast_1, 1, "Response To Stress", c("gene-2", "gene-3"))
+library("ggplot2")
+library("clusterProfiler")
 
 gseaplot2_labeled <- function(gsea, gs, title, gene_list) {
 	search_name <- unlist(lapply(gene_list, FUN = toupper))
