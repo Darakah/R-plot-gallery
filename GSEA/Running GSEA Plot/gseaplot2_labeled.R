@@ -20,22 +20,23 @@ gseaplot2_labeled <- function(gsea, gs, title, gene_list) {
 	g3 <- gseaplot2(gsea, gs, subplots = 3)
   
 	g$theme <- g$theme + theme(axis.text.x=element_blank(),
-								axis.line.x=element_blank(),
-								axis.ticks.x=element_blank(),
-								plot.margin = unit(c(0, 0.5, 0, 0.5), "cm"),
-								plot.title = element_text(hjust = 0.5))
+				   axis.line.x=element_blank(),
+				   axis.ticks.x=element_blank(),
+				   plot.margin = unit(c(0, 0.5, 0, 0.5), "cm"),
+				   plot.title = element_text(hjust = 0.5))
 	
 	g <- g + 
 		geom_point(data = label_df, colour = "red", aes(x=loc_x, y=loc_y)) +
 		ggtitle(title) +
-		geom_label_repel(data = label_df, colour = "black", 
-						aes(x=loc_x, y=loc_y, label=genes), 
-						size = 3.5, box.padding = 3, label.size=NA)
+		geom_label_repel(data = label_df, 
+				 colour = "black", 
+				 aes(x=loc_x, y=loc_y, label=genes), 
+				 size = 3.5, box.padding = 3, label.size=NA)
 	
 	g2$theme <- g2$theme + theme(axis.text.x=element_blank(),
-								axis.line.x=element_blank(),
-								axis.ticks.x=element_blank(),
-								plot.margin = unit(c(0, 0.5, 0, 0.5), "cm"))
+				     axis.line.x=element_blank(),
+				     axis.ticks.x=element_blank(),
+				     plot.margin = unit(c(0, 0.5, 0, 0.5), "cm"))
 	
 	g3$theme <- g3$theme + theme(plot.margin = unit(c(0, 0.5, 0, 0.5), "cm"))
 	
