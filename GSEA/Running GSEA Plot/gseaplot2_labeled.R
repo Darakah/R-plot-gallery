@@ -13,7 +13,7 @@ library("clusterProfiler")
 gseaplot2_labeled <- function(gsea, gs, title, gene_list) {
 	search_name <- unlist(lapply(gene_list, FUN = toupper))
 	loc_x <- match(search_name, names(gsea@geneList))
-	label_df <- data.frame(genes, search_name, loc_x, loc_y = rep(0, length(loc_x)))
+	label_df <- data.frame(gene_list, search_name, loc_x, loc_y = rep(0, length(loc_x)))
 	
 	g <- gseaplot2(gsea, gs, subplots = 1)
 	g2 <- gseaplot2(gsea, gs, subplots = 2)
@@ -30,7 +30,7 @@ gseaplot2_labeled <- function(gsea, gs, title, gene_list) {
 		ggtitle(title) +
 		geom_label_repel(data = label_df, 
 				 colour = "black", 
-				 aes(x=loc_x, y=loc_y, label=genes), 
+				 aes(x=loc_x, y=loc_y, label=gene_list), 
 				 size = 3.5, box.padding = 3, label.size=NA)
 	
 	g2$theme <- g2$theme + theme(axis.text.x=element_blank(),
