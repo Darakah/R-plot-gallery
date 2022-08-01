@@ -36,7 +36,6 @@ Hazard_Ratio_Plot <- function(df, log10 = TRUE, exclude = c(), filename = NA, wi
     scale_color_manual(values = c("not_sign" = "grey",
                                   "beneficial" = "green",
                                   "detrimental" = "red")) +
-    ylab("-log10(HR)") +
     xlab("Strain") +
     theme_bw() + 
     theme(panel.border = element_blank(), 
@@ -44,6 +43,12 @@ Hazard_Ratio_Plot <- function(df, log10 = TRUE, exclude = c(), filename = NA, wi
           panel.grid.minor = element_blank(), 
           axis.line = element_line(colour = "black"),
           axis.text.x = element_text(angle = 90))
+  
+  if(log10){
+    HR.plot <- HR.plot + ylab("-log10(HR)")
+  } else {
+    HR.plot <- HR.plot + ylab("1/HR") 
+  }
   
   if(!is.na(filename)){
     ggsave(HR.plot, filename = filename, width = width, height = height)
